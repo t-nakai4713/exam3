@@ -1,0 +1,33 @@
+  <section class="function container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+	  <h1>Tweet投稿</h1>
+	  <%= render 'form' %>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+	<h1>Tweets一覧</h1>
+	 <div class="row">
+	 <% @tweets.reverse_each do |tweet| %>
+
+	  <div class="col-sm-12">
+	   <div class="tweet_col">
+	    <div class="tweet_col_content">
+	    <p><%= tweet.content %></p>
+	    <p>投稿時間:<%= tweet.created_at %></p>
+	    </div>
+	    <%= link_to "編集", edit_tweet_path(tweet.id), class: 'btn btn-default btn-sm btn-success'  %>
+	    <%= link_to "削除", tweet_path(tweet.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger'  %>
+	   </div>
+	  </div>
+	 <% end %>
+	 </div>
+        </div>
+    </div>
+
+<div id="page-top-btn" class="page-top-btn">
+    <p><a class="move-page-top" id="move-page-top">▲</a></p>
+</div>
+
+</section>
+
