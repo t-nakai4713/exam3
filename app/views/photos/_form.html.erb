@@ -1,0 +1,16 @@
+<%= form_for(@photo) do |f| %>
+  <% if @photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @photo.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @photo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :content, class: 'form-control'  %>
+  <br>
+  <%= f.submit 'Insta!', class: 'btn btn-primary btn-block' %>
+  <% end %>

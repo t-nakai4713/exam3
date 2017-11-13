@@ -11,6 +11,7 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
+#  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -38,4 +39,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0" 
+
+config.action_mailer.default_url_options = { host: 'localhost:3000' }
+config.action_mailer.delivery_method = :letter_opener_web
+
+
 end

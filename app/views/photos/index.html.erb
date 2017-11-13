@@ -1,0 +1,33 @@
+  <section class="function container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <h1>Insta投稿</h1>
+          <%= render 'form' %>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+        <h1>Insta一覧</h1>
+         <div class="row">
+         <% @photos.reverse_each do |photo| %>
+
+          <div class="col-sm-12">
+           <div class="tweet_col">
+            <div class="tweet_col_content">
+            <p><%= photo.content %></p>
+            <p>by <%= photo.user.name %></p>
+            </div>
+            <%= link_to "編集", edit_photo_path(photo.id), class: 'btn btn-default btn-sm btn-success'  %>
+            <%= link_to "削除", photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger'  %>
+           </div>
+          </div>
+         <% end %>
+         </div>
+        </div>
+    </div>
+
+<div id="page-top-btn" class="page-top-btn">
+    <p><a class="move-page-top" id="move-page-top">▲</a></p>
+</div>
+
+</section>
+
