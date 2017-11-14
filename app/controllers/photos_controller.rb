@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
       @photo.user_id = current_user.id
    if @photo.save
       redirect_to photos_path, notice: "投稿しました！"
+      NoticeMailer.sendmail_photo(@photo).deliver
    else
      @photos = Photo.all
      render 'index'
@@ -47,7 +48,7 @@ class PhotosController < ApplicationController
 
   private
     def photos_params
-      params.require(:photo).permit(:content) 
+      params.require(:photo).permit(:content, :user_id) 
     end
 
     def set_photo
