@@ -48,7 +48,7 @@ class PhotosController < ApplicationController
 
   private
     def photos_params
-      params.require(:photo).permit(:content, :user_id) 
+      params.require(:photo).permit(:content, :user_id, :image, :image_cache, :remove_image) 
     end
 
     def set_photo

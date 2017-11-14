@@ -13,8 +13,13 @@
           <div class="col-sm-12">
            <div class="tweet_col">
             <div class="tweet_col_content">
+	      <% if photo.image? %>
+	        <%= image_tag photo.image.url if photo.image? %>
+	      <% end %><br>
+
             <p><%= photo.content %></p>
             <p>by <%= photo.user.name %></p>
+
             </div>
             <%= link_to "編集", edit_photo_path(photo.id), class: 'btn btn-default btn-sm btn-success'  %>
             <%= link_to "削除", photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger'  %>
