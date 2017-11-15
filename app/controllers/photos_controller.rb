@@ -27,12 +27,16 @@ class PhotosController < ApplicationController
   end
 
   def update
+   if @photo.user_id == current_user.id
     @photo.update(photos_params)
     if @photo.save
       redirect_to photos_path, notice: "編集しました！"
     else
      render 'edit'
     end
+   else
+    redirect_to photos_path, notice: "編集出来ません（投稿ユーザで再度ログインして下さい"
+   end
   end 
 
   def destroy
