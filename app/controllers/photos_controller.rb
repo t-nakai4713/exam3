@@ -24,6 +24,10 @@ class PhotosController < ApplicationController
   end
 
   def edit
+   if @photo.user_id == current_user.id
+   else
+    redirect_to photos_path, notice: "編集出来ません（投稿ユーザで再度ログインして下さい"
+   end
   end
 
   def update
