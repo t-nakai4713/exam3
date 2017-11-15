@@ -36,8 +36,12 @@ class PhotosController < ApplicationController
   end 
 
   def destroy
+   if @photo.user_id == current_user.id
     @photo.destroy
     redirect_to photos_path, notice: "削除しました！"
+   else
+    redirect_to photos_path, notice: "削除出来ません（投稿ユーザで再度ログインして下さい）"
+   end
   end 
 
 #  def confirm

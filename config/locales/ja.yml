@@ -1,6 +1,12 @@
 ---
 ja:
   activerecord:
+    models:
+      photo: Photo
+    attributes:
+      photo:
+        content: 内容
+
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -203,3 +209,4 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
