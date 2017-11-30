@@ -2,15 +2,22 @@
     <div class="row">
     <h2>Function</h2>
       <div class="function-images">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-4 col-sm-4">
           <div class="function-image">
             <img src="<%= asset_path "twit.png"%>">
             <p><%=link_to "Tweet!", tweets_path %></p>
           </div>
         </div>
+        <div class="col-md-4 col-sm-4">
           <div class="function-image">
             <img src="<%= asset_path "insta.png"%>">
             <p><%=link_to "Insta!", photos_path %></p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="function-image">
+            <img src="<%= asset_path "FB.png"%>">
+            <p><%=link_to "FB!", photos_path %></p>
           </div>
         </div>
       </div>
