@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'topics/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -11,6 +14,8 @@ Rails.application.routes.draw do
    end
 
   resources :photos, only: [:index, :create, :edit, :update, :destroy]
+
+  resources :topics, only: [:index, :create, :edit, :update, :destroy]
 
 if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
