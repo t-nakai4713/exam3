@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   has_many :photos
-  has_many :topics
+  has_many :topics, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 def self.create_unique_string
     SecureRandom.uuid

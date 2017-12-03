@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
         @topics = Topic.all
@@ -9,6 +9,12 @@ class TopicsController < ApplicationController
         else
                 @topic = Topic.new
         end
+  end
+  
+# showアククションを定義します。入力フォームと一覧を表示するためインスタンスを2つ生成します。
+  def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
 def create
@@ -51,6 +57,7 @@ def create
     redirect_to topics_path, notice: "削除出来ません（投稿ユーザで再度ログインして下さい）"
    end
   end
+
 
 
 
