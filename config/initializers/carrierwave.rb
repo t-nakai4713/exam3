@@ -13,6 +13,9 @@ arrierWave.configure do |config|
   case Rails.env
     when 'production'
       config.fog_directory = 'exam3-production-20171204'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/exam3-production-20171204''
+      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/exam3-production-20171204'
+    when 'development'
+      config.fog_directory = 'exam3-development-20171204'
+      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/exam3-development-20171204'
   end
 end
