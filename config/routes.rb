@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
 
-  #get 'topics/index'
+  get 'relationships/create'
+
+  get 'relationships/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
 }
+
+  resources :users, only: [:index, :show]
+  resources :relationships, only: [:create, :destroy]
+
+resources :conversations do
+  resources :messages
+end
+
   resources :tweets, only: [:index, :create, :edit, :update, :destroy] do
     collection do
       post :confirm
@@ -18,6 +29,7 @@ Rails.application.routes.draw do
   resources :topics do
 	resources :comments
   end
+
 
 if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
