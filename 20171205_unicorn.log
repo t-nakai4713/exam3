@@ -1,0 +1,19 @@
+nakai4713:~/workspace/exam3 (master) $ cap production unicorn:stop
+00:00 unicorn:stop
+      stopping unicorn...
+      01 kill -s QUIT `cat /var/www/exam3/current/tmp/pids/unicorn.pid`
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.189s
+nakai4713:~/workspace/exam3 (master) $ cap production unicorn:start
+00:00 unicorn:start
+      01 /usr/local/rbenv/bin/rbenv exec bundle exec unicorn -c /var/www/exam3/current/config/unicorn/production.rb -E deployment -D 
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 2.963s
+

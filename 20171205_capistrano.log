@@ -1,0 +1,430 @@
+nakai4713:~/workspace/exam3 (master) $ bundle exec cap production deploy
+00:00 git:wrapper
+      01 mkdir -p /tmp
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.185s
+      Uploading /tmp/git-ssh-exam3-production-ubuntu.sh 100.0%
+      02 chmod 700 /tmp/git-ssh-exam3-production-ubuntu.sh
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.179s
+00:00 git:check
+      01 git ls-remote --heads https://github.com/t-nakai4713/exam3
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 171ea1039732a96135c826d6d7f098a70336f1a9       refs/heads/AWS
+      01 c42381368b5a5384ed80e22c466c5b814d49f5e6       refs/heads/master
+      01 836c1867c5fd8c37d4614f3643cc74cb412de9e2       refs/heads/topic
+      01 f85c1342d8fe09f75cc68da26c8e419ce8f37b32       refs/heads/user
+    ✔ 01 app@54.64.67.21 0.784s
+00:01 deploy:check:directories
+      01 mkdir -p /var/www/exam3/shared /var/www/exam3/releases
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.180s
+00:01 deploy:check:linked_dirs
+      01 mkdir -p /var/www/exam3/shared/log /var/www/exam3/shared/tmp/pids /var/www/exam3/shared/tmp/cache /var/www/exam3/shared/tmp/…
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.179s
+00:01 deploy:check:make_linked_dirs
+      01 mkdir -p /var/www/exam3/shared /var/www/exam3/shared/config
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.182s
+00:02 git:clone
+      The repository mirror is at /var/www/exam3/repo
+00:03 git:update
+      01 git remote update --prune
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 Fetching origin
+      01 From https://github.com/t-nakai4713/exam3
+      01    19fa08b..c423813  master     -> master
+    ✔ 01 app@54.64.67.21 1.011s
+00:04 git:create_release
+      01 mkdir -p /var/www/exam3/releases/20171204165041
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.180s
+      02 git archive master | tar -x -f - -C /var/www/exam3/releases/20171204165041
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.200s
+00:05 git:set_current_revision
+      01 echo "c42381368b5a5384ed80e22c466c5b814d49f5e6" >> REVISION
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.181s
+00:05 deploy:symlink:linked_files
+      01 mkdir -p /var/www/exam3/releases/20171204165041 /var/www/exam3/releases/20171204165041/config
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.183s
+      02 ln -s /var/www/exam3/shared/.env /var/www/exam3/releases/20171204165041/.env
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.181s
+      03 rm /var/www/exam3/releases/20171204165041/config/secrets.yml
+      03 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 03 app@54.64.67.21 0.181s
+      04 ln -s /var/www/exam3/shared/config/secrets.yml /var/www/exam3/releases/20171204165041/config/secrets.yml
+      04 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 04 app@54.64.67.21 0.183s
+00:06 deploy:symlink:linked_dirs
+      01 mkdir -p /var/www/exam3/releases/20171204165041 /var/www/exam3/releases/20171204165041/tmp /var/www/exam3/releases/201712041…
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.182s
+      02 rm -rf /var/www/exam3/releases/20171204165041/log
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.182s
+      03 ln -s /var/www/exam3/shared/log /var/www/exam3/releases/20171204165041/log
+      03 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 03 app@54.64.67.21 0.182s
+      04 ln -s /var/www/exam3/shared/tmp/pids /var/www/exam3/releases/20171204165041/tmp/pids
+      04 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 04 app@54.64.67.21 0.181s
+      05 ln -s /var/www/exam3/shared/tmp/cache /var/www/exam3/releases/20171204165041/tmp/cache
+      05 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 05 app@54.64.67.21 0.181s
+      06 ln -s /var/www/exam3/shared/tmp/sockets /var/www/exam3/releases/20171204165041/tmp/sockets
+      06 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 06 app@54.64.67.21 0.178s
+      07 rm -rf /var/www/exam3/releases/20171204165041/public/uploads
+      07 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 07 app@54.64.67.21 0.180s
+      08 ln -s /var/www/exam3/shared/public/uploads /var/www/exam3/releases/20171204165041/public/uploads
+      08 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 08 app@54.64.67.21 0.185s
+      09 rm -rf /var/www/exam3/releases/20171204165041/public/assets
+      09 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 09 app@54.64.67.21 0.182s
+      10 ln -s /var/www/exam3/shared/public/assets /var/www/exam3/releases/20171204165041/public/assets
+      10 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 10 app@54.64.67.21 0.179s
+00:11 bundler:install
+      01 /usr/local/rbenv/bin/rbenv exec bundle install --path /var/www/exam3/shared/bundle --without development test --deployment -…
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.522s
+00:12 deploy:assets:precompile
+      01 /usr/local/rbenv/bin/rbenv exec bundle exec rake assets:precompile
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 3.302s
+00:15 deploy:assets:backup_manifest
+      01 mkdir -p /var/www/exam3/releases/20171204165041/assets_manifest_backup
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.179s
+      02 cp /var/www/exam3/releases/20171204165041/public/assets/.sprockets-manifest-3b632c8c8d031f26532818a940b0d64f.json /var/www/e…
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.183s
+00:16 deploy:migrate
+      [deploy:migrate] Run `rake db:migrate`
+00:16 deploy:migrating
+      01 /usr/local/rbenv/bin/rbenv exec bundle exec rake db:migrate
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+      01 The PGconn, PGresult, and PGError constants are deprecated, and will be
+      01 removed as of version 1.0.
+      01
+      01 You should use PG::Connection, PG::Result, and PG::Error instead, respectively.
+      01
+      01 Called from /var/www/exam3/shared/bundle/ruby/2.3.0/gems/activesupport-4.2.3/lib/active_support/dependencies.rb:240:in `load…
+      01    (6.5ms)  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+      01    (3.3ms)  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+      01   ActiveRecord::SchemaMigration Load (0.2ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+      01 Migrating to CreateTweets (20170817080507)
+      01    (0.1ms)  BEGIN
+      01 == 20170817080507 CreateTweets: migrating =====================================
+      01
+      01 -- create_table(:tweets)
+      01
+      01    (6.5ms)  CREATE TABLE "tweets" ("id" serial primary key, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updat…
+      01    -> 0.0072s
+      01
+      01 == 20170817080507 CreateTweets: migrated (0.0074s) ============================
+      01
+      01
+      01   SQL (0.2ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170817080507"]]
+      01    (1.2ms)  COMMIT
+      01 Migrating to DeviseCreateUsers (20171107081451)
+      01    (0.1ms)  BEGIN
+      01 == 20171107081451 DeviseCreateUsers: migrating ================================
+      01
+      01 -- create_table(:users)
+      01
+      01    (6.3ms)  CREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_passwor…
+      01    -> 0.0073s
+      01
+      01 -- add_index(:users, :email, {:unique=>true})
+      01
+      01    (2.5ms)  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+      01    -> 0.0038s
+      01
+      01 -- add_index(:users, :reset_password_token, {:unique=>true})
+      01
+      01    (2.5ms)  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")
+      01    -> 0.0037s
+      01
+      01 == 20171107081451 DeviseCreateUsers: migrated (0.0150s) =======================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171107081451"]]
+      01    (1.8ms)  COMMIT
+      01 Migrating to CreatePhotos (20171110001601)
+      01    (0.1ms)  BEGIN
+      01 == 20171110001601 CreatePhotos: migrating =====================================
+      01
+      01 -- create_table(:photos)
+      01
+      01    (5.8ms)  CREATE TABLE "photos" ("id" serial primary key, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updat…
+      01    -> 0.0062s
+      01
+      01 == 20171110001601 CreatePhotos: migrated (0.0063s) ============================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171110001601"]]
+      01    (1.1ms)  COMMIT
+      01 Migrating to AddNameToUsers (20171110060025)
+      01    (0.1ms)  BEGIN
+      01 == 20171110060025 AddNameToUsers: migrating ===================================
+      01
+      01 -- add_column(:users, :name, :string)
+      01
+      01    (0.2ms)  ALTER TABLE "users" ADD "name" character varying
+      01    -> 0.0004s
+      01
+      01 == 20171110060025 AddNameToUsers: migrated (0.0005s) ==========================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171110060025"]]
+      01    (0.7ms)  COMMIT
+      01 Migrating to AddUserIdToPhotos (20171110060520)
+      01    (0.1ms)  BEGIN
+      01 == 20171110060520 AddUserIdToPhotos: migrating ================================
+      01
+      01 -- add_column(:photos, :user_id, :integer)
+      01
+      01    (0.2ms)  ALTER TABLE "photos" ADD "user_id" integer
+      01    -> 0.0003s
+      01
+      01 == 20171110060520 AddUserIdToPhotos: migrated (0.0004s) =======================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171110060520"]]
+      01    (0.7ms)  COMMIT
+      01 Migrating to AddOmniauthColumnsToUsers (20171110081530)
+      01    (0.1ms)  BEGIN
+      01 == 20171110081530 AddOmniauthColumnsToUsers: migrating ========================
+      01
+      01 -- add_column(:users, :uid, :string, {:null=>false, :default=>""})
+      01
+      01    (11.3ms)  ALTER TABLE "users" ADD "uid" character varying DEFAULT '' NOT NULL
+      01    -> 0.0117s
+      01
+      01 -- add_column(:users, :provider, :string, {:null=>false, :default=>""})
+      01
+      01    (10.5ms)  ALTER TABLE "users" ADD "provider" character varying DEFAULT '' NOT NULL
+      01    -> 0.0109s
+      01
+      01 -- add_column(:users, :image_url, :string)
+      01
+      01    (0.2ms)  ALTER TABLE "users" ADD "image_url" character varying
+      01    -> 0.0004s
+      01
+      01 -- add_index(:users, [:uid, :provider], {:unique=>true})
+      01
+      01    (2.7ms)  CREATE UNIQUE INDEX  "index_users_on_uid_and_provider" ON "users"  ("uid", "provider")
+      01    -> 0.0041s
+      01 == 20171110081530 AddOmniauthColumnsToUsers: migrated (0.0274s) ===============
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171110081530"]]
+      01    (1.9ms)  COMMIT
+      01 Migrating to AddConfirmableToDevise (20171110083110)
+      01    (0.1ms)  BEGIN
+      01 == 20171110083110 AddConfirmableToDevise: migrating ===========================
+      01
+      01 -- add_column(:users, :confirmation_token, :string)
+      01
+      01    (0.2ms)  ALTER TABLE "users" ADD "confirmation_token" character varying
+      01    -> 0.0004s
+      01
+      01 -- add_column(:users, :confirmed_at, :datetime)
+      01
+      01    (0.2ms)  ALTER TABLE "users" ADD "confirmed_at" timestamp
+      01    -> 0.0003s
+      01
+      01 -- add_column(:users, :confirmation_sent_at, :datetime)
+      01
+      01    (0.1ms)  ALTER TABLE "users" ADD "confirmation_sent_at" timestamp
+      01    -> 0.0003s
+      01
+      01 -- add_column(:users, :unconfirmed_email, :string)
+      01
+      01    (0.1ms)  ALTER TABLE "users" ADD "unconfirmed_email" character varying
+      01    -> 0.0003s
+      01
+      01 -- add_index(:users, :confirmation_token, {:unique=>true})
+      01
+      01    (2.7ms)  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")
+      01    -> 0.0039s
+      01 -- execute("UPDATE users SET confirmed_at = NOW()")
+      01    (0.4ms)  UPDATE users SET confirmed_at = NOW()
+      01    -> 0.0004s
+      01 == 20171110083110 AddConfirmableToDevise: migrated (0.0060s) ==================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171110083110"]]
+      01    (0.8ms)  COMMIT
+      01 Migrating to AddImageToPhotos (20171114050324)
+      01    (0.1ms)  BEGIN
+      01 == 20171114050324 AddImageToPhotos: migrating =================================
+      01
+      01 -- add_column(:photos, :image, :string)
+      01
+      01    (0.2ms)  ALTER TABLE "photos" ADD "image" character varying
+      01    -> 0.0004s
+      01
+      01 == 20171114050324 AddImageToPhotos: migrated (0.0005s) ========================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171114050324"]]
+      01    (0.8ms)  COMMIT
+      01 Migrating to AddAdminToUser (20171115024320)
+      01    (0.1ms)  BEGIN
+      01 == 20171115024320 AddAdminToUser: migrating ===================================
+      01
+      01 -- add_column(:users, :admin, :boolean, {:default=>false})
+      01
+      01    (15.7ms)  ALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'
+      01    -> 0.0161s
+      01 == 20171115024320 AddAdminToUser: migrated (0.0162s) ==========================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171115024320"]]
+      01    (1.6ms)  COMMIT
+      01 Migrating to CreateTopics (20171130082352)
+      01    (0.1ms)  BEGIN
+      01 == 20171130082352 CreateTopics: migrating =====================================
+      01 -- create_table(:topics)
+      01    (6.8ms)  CREATE TABLE "topics" ("id" serial primary key, "title" character varying, "content" text NOT NULL, "user_id" in…
+      01    -> 0.0072s
+      01 == 20171130082352 CreateTopics: migrated (0.0072s) ============================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171130082352"]]
+      01    (1.1ms)  COMMIT
+      01 Migrating to CreateComments (20171201070051)
+      01    (0.1ms)  BEGIN
+      01 == 20171201070051 CreateComments: migrating ===================================
+      01
+      01 -- create_table(:comments)
+      01
+      01    (5.9ms)  CREATE TABLE "comments" ("id" serial primary key, "user_id" integer, "topic_id" integer, "content" text, "create…
+      01    (2.4ms)  CREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")
+      01    (2.4ms)  CREATE  INDEX  "index_comments_on_topic_id" ON "comments"  ("topic_id")
+      01    (1.2ms)  ALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+      01 FOREIGN KEY ("user_id")
+      01   REFERENCES "users" ("id")
+      01
+      01    (0.7ms)  ALTER TABLE "comments" ADD CONSTRAINT "fk_rails_7b51c0b3c1"
+      01 FOREIGN KEY ("topic_id")
+      01   REFERENCES "topics" ("id")
+      01 
+      01    -> 0.0160s
+      01 == 20171201070051 CreateComments: migrated (0.0161s) ==========================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171201070051"]]
+      01    (1.6ms)  COMMIT
+      01 Migrating to AddAvatarToUsers (20171203162005)
+      01    (0.1ms)  BEGIN
+      01 == 20171203162005 AddAvatarToUsers: migrating =================================
+      01 -- add_column(:users, :avatar, :string)
+      01    (0.2ms)  ALTER TABLE "users" ADD "avatar" character varying
+      01    -> 0.0005s
+      01
+      01 == 20171203162005 AddAvatarToUsers: migrated (0.0006s) ========================
+      01
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171203162005"]]
+      01    (0.7ms)  COMMIT
+      01 Migrating to CreateRelationships (20171203180120)
+      01    (0.1ms)  BEGIN
+      01 == 20171203180120 CreateRelationships: migrating ==============================
+      01
+      01 -- create_table(:relationships)
+      01
+      01    (3.5ms)  CREATE TABLE "relationships" ("id" serial primary key, "follower_id" integer, "followed_id" integer, "created_at…
+      01    -> 0.0041s
+      01
+      01 -- add_index(:relationships, :follower_id)
+      01
+      01    (2.6ms)  CREATE  INDEX  "index_relationships_on_follower_id" ON "relationships"  ("follower_id")
+      01    -> 0.0038s
+      01 -- add_index(:relationships, :followed_id)
+      01    (2.5ms)  CREATE  INDEX  "index_relationships_on_followed_id" ON "relationships"  ("followed_id")
+      01    -> 0.0037s
+      01 -- add_index(:relationships, [:follower_id, :followed_id], {:unique=>true})
+      01    (2.4ms)  CREATE UNIQUE INDEX  "index_relationships_on_follower_id_and_followed_id" ON "relationships"  ("follower_id", "f…
+      01    -> 0.0035s
+      01 == 20171203180120 CreateRelationships: migrated (0.0154s) =====================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171203180120"]]
+      01    (1.0ms)  COMMIT
+      01 Migrating to CreateConversations (20171203191003)
+      01    (0.1ms)  BEGIN
+      01 == 20171203191003 CreateConversations: migrating ==============================
+      01 -- create_table(:conversations)
+      01    (3.3ms)  CREATE TABLE "conversations" ("id" serial primary key, "sender_id" integer, "recipient_id" integer, "created_at"…
+      01    -> 0.0036s
+      01 == 20171203191003 CreateConversations: migrated (0.0036s) =====================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171203191003"]]
+      01    (1.0ms)  COMMIT
+      01 Migrating to CreateMessages (20171203191201)
+      01    (0.1ms)  BEGIN
+      01 == 20171203191201 CreateMessages: migrating ===================================
+      01 -- create_table(:messages)
+      01    (6.1ms)  CREATE TABLE "messages" ("id" serial primary key, "body" text, "conversation_id" integer, "user_id" integer, "re…
+      01    (2.5ms)  CREATE  INDEX  "index_messages_on_conversation_id" ON "messages"  ("conversation_id")
+      01    (2.5ms)  CREATE  INDEX  "index_messages_on_user_id" ON "messages"  ("user_id")
+      01    (0.7ms)  ALTER TABLE "messages" ADD CONSTRAINT "fk_rails_7f927086d2"
+      01 FOREIGN KEY ("conversation_id")
+      01   REFERENCES "conversations" ("id")
+      01 
+      01    (0.7ms)  ALTER TABLE "messages" ADD CONSTRAINT "fk_rails_273a25a7a6"
+      01 FOREIGN KEY ("user_id")
+      01   REFERENCES "users" ("id")
+      01
+      01    -> 0.0162s
+      01 == 20171203191201 CreateMessages: migrated (0.0162s) ==========================
+      01
+      01   SQL (0.1ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20171203191201"]]
+      01    (1.3ms)  COMMIT
+    ✔ 01 app@54.64.67.21 3.137s
+00:19 deploy:symlink:release
+      01 ln -s /var/www/exam3/releases/20171204165041 /var/www/exam3/releases/current
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.183s
+      02 mv /var/www/exam3/releases/current /var/www/exam3
+      02 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 02 app@54.64.67.21 0.180s
+00:20 unicorn:start
+      unicorn is running...
+      unicorn restarting...
+      01 kill -s USR2 `cat /var/www/exam3/current/tmp/pids/unicorn.pid`
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.182s
+00:30 deploy:cleanup
+      Keeping 5 of 5 deployed releases on 54.64.67.21
+      No old releases (keeping newest 5) on 54.64.67.21
+00:31 deploy:log_revision
+      01 echo "Branch master (at c42381368b5a5384ed80e22c466c5b814d49f5e6) deployed as release 20171204165041 by ubuntu" >> /var/www/…
+      01 bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+    ✔ 01 app@54.64.67.21 0.178s
+
