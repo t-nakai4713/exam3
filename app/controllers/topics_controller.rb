@@ -59,8 +59,6 @@ def create
   end
 
 
-
-
   private
     def topics_params
       params.require(:topic).permit(:title, :content, :user_id, :image, :image_cache, :remove_image)

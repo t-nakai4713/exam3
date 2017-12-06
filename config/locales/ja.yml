@@ -6,6 +6,12 @@ ja:
     attributes:
       photo:
         content: 内容
+    models:
+      photo: Topic
+    attributes:
+      photo:
+        title: タイトル
+        content: 内容
 
     errors:
       messages:
